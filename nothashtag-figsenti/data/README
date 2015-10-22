@@ -1,0 +1,68 @@
+8000 figurative tweets (train)
+1000 " " (trial)
+
+we actually have in draft folder (need to do mapping):
+6812 train
+920 trial
+
+top10 hashtags in trial:
+ 166 #sarcasm
+  51 #yeahright
+  36 #not
+  27 #irony
+   2 #sarcastweet
+   2 #nascar
+   2 #mnwild
+   2 #finals
+   2 #eurovision
+   1 #yqr
+
+top10 hashtags in train:
+2221 #not
+1535 #sarcasm
+1029 #irony
+  34 #yeahright
+  27 #lol
+  26 #sarcastictweet
+  21 #
+  17 #fun
+  15 #funny
+  14 #great
+
+
+
+constructions:
+
+as ... as (130 tweets in trial data)    You're about as unique as a Bob Marley poster
+Oh, you ...?  You ... must      	Oh you smoke and drink at 13? Your future must be so bright
+    	      	      			Oh, 10 hashtags in that tweet? You must be such a trend-setter.
+(hashtags see above)		No, i haven't gained weight.. Your eyes just got fat #sarcastweet
+       		     			I love when parents are responsible #Sarcasm #WatchYourDamnKids
+Don't you love...?			Don't you love it when your bf is being a butt hole for no reason?
+I just love ...
+
+
+### trial-data2.txt:
+total 920 tweets, grep out those that contain: 
+
+166 #sarcasm
+27 #irony
+37 #not
+119 “\bas .* as\b”
+43 “don't you love”
+58 “proverbial”
+114 “so to speak”
+83 “literally”
+14 “I love”
+6 “Oh … You must”
+47 “#yeahright”
+24 “virtually”
+~ roughly 110 tweets left, thus cover ~88% of trial data
+
+### train data
+6812 tweets  (need to redownload full set of 8000)
+
+wow, we can grep out 99% of the tweets from train:
+ grep -iv "#sarcasm" train-dat.txt  | grep -iv "#irony" | grep -iv "#not"  | grep -iv "\bas .* as\b"  | grep -vi "don't you love"  | grep -iv proverbial | grep -iv "so to speak"  | grep -iv literally | grep -iv "I love"  | grep -vi "Oh.*you must"  | grep -vi "#yeahright" | grep -iv virtually | grep -iv "#sarcastic" |wc
+
+from their readme: The dataset contains 5000 sarcastic tweets, 1000 ironical tweets and 2000 metaphorical tweets.

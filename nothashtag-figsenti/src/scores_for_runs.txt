@@ -1,0 +1,80 @@
+trial.constantbaseline.average
+
+cosine 0.731629602745	mean squared error  3.13292968863 
+---------------------------------------------------------------------------
+
+trial.constantbaseline.median
+
+cosine 0.731629602745	mean squared error  3.31160434783 
+---------------------------------------------------------------------------
+
+trial.constantbaseline.mode
+
+cosine 0.731629602745	mean squared error  3.13469565217 
+---------------------------------------------------------------------------
+
+trial.constantbaseline.random
+
+cosine 0.588751690083	mean squared error  5.16792347826 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.binarycount.rem_hash.rem_stop
+
+cosine 0.313419013009	mean squared error  39.6776188812 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.binarycount.rem_hash.yes_stop
+
+cosine 0.654323444621	mean squared error  5.67446556577 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.binarycount.yes_hash.rem_stop
+
+cosine 0.662652369322	mean squared error  5.55538615998 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.binarycount.yes_hash.yes_stop
+
+cosine 0.737843780466	mean squared error  3.76546435864 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.count.rem_hash.rem_stop
+
+cosine 0.278159163842	mean squared error  56.6369644854 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.count.rem_hash.yes_stop
+
+cosine 0.632078918885	mean squared error  6.3853474744 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.count.yes_hash.rem_stop
+
+cosine 0.659787818561	mean squared error  5.73627757655 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.count.yes_hash.yes_stop
+
+cosine 0.731251238869	mean squared error  3.9526694902 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.tfidf.rem_hash.rem_stop
+
+cosine 0.410291148454	mean squared error  22.1803306235 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.tfidf.rem_hash.yes_stop
+
+cosine 0.689636023153	mean squared error  4.82254403114 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.tfidf.yes_hash.rem_stop
+
+cosine 0.718410584848	mean squared error  4.17996389972 
+---------------------------------------------------------------------------
+
+trial.linearRegressionbaseline.tfidf.yes_hash.yes_stop
+
+cosine 0.746747574629	mean squared error  3.61801899187 
+---------------------------------------------------------------------------
+

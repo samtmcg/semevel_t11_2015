@@ -1,0 +1,2 @@
+#cat /home/alonso/nltk_data/stopwords/english | grep -vw "as" > stopwords
+egrep -oiw "as [[:alnum:]]+ as [[:alpha:]]+( [[:alnum:]]+)?" asXas.txt | grep -iw -vFf stopwords | sort |uniq -c | sort -nr > counts-asXasY.txt

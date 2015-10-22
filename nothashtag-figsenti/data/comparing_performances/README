@@ -1,0 +1,12 @@
+####  comparing_trial_performances, comparing_test_performances ####
+
+tweet_id gold_score ridge_score ensemble_score special_score tweet
+
+
+####  gold_gsa_test ####
+
+tweet_id gold_score gsa_predictions tweet
+
+#### test_gold_rr_st1_st2_gsa ###
+
+tweed_id gold_score ridge_score ensemble_score special_score gsa_score tweet

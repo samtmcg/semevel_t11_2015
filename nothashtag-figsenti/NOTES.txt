@@ -1,0 +1,151 @@
+Meeting Nov 11, 2014:
+=====================
+OK - register us as team (cph) Sarah
+OK - set up BOW baseline regression model (Sarah) 
+OK  a) with hashtags, b) without hashtags Sarah
+OK - evaluation script HM
+- generate corpora: figurative vs literal - BP & HM
+OK - tokenize all data wth CMU twokenize - BP
+OK - run our old sentiment analysis system on the trial data - BP
+
+stuff to remember:
+- check SATIRE Baldwin data, Switchboard
+- remember to underfit!
+
+Meeting Nov 14, 2014:
+=====================
+OK - reading
+- boundaries: cutoff/capping vs distribution rescaling
+- errors
+- evaluation script option for error analysis
+
+
+- add features (predictions) from general SA system 
+- add Brown clusters as features (back-off cluster -1?)
+- inspect weights
+- @ tokens
+- things to try: bigrams, ensemble, stacking, perplexity, topic modeling, data generation
+- maybe: self-training
+
+
+HM===Barnden, J. (2010). Metaphor and metonymy: Making the connections more slippery. Cognitive Linguistics 21(1): 1-34.
+Hao, Y., Veale, T. (2010). An Ironic Fist in a Velvet Glove: Creative Mis-Representation in the Construction of Ironic Similes. Minds and Machines 20(4):635–650.
+BP===Reyes A., Rosso P. (2013). On the Difficulty of Automatically Detecting Irony: Beyond a Simple Case of Negation. Knowledge and Information Systems. DOI: 10.1007/s10115-013-0652-8.
+BP===Reyes A., Rosso P., Veale T. (2012). A Multidimensional Approach for Detecting Irony in Twitter. Languages Resources and Evaluation 47(1): 239-268.
+SMc===Reyes A., Rosso P. (2012). Making Objective Decisions from Subjective Data: Detecting Irony in Customers Reviews. Journal on Decision Support Systems 53(4): 754–760.
+Reyes A., Rosso P., Buscaldi D. (2012). From Humor Recognition to Irony Detection: The Figurative Language of Social Media. Data & Knowledge Engineering 74:1-12.
+Shutova, E., L. Sun, A. Korhonen. (2010). Metaphor identification using verb and noun clustering. Proceedings of the 23rd International Conference on Computational Linguistics.
+HM===Veale, T., Keane, M. T. (1992). Conceptual Scaffolding: A spatially founded meaning representation for metaphor comprehension. Computational Intelligence 8(3): 494-519.
+SMc===Veale, T. (2012). Detecting and Generating Ironic Comparisons: An Application of Creative Information Retrieval. AAAI Fall Symposium Series 2012, Artificial Intelligence of Humor. Arlington, Virginia.
+Veale,A T., Hao, Y. (2007). Comprehending and Generating Apt Metaphors: A Web-driven, Case-based Approach to Figurative Language. In proceedings of AAAI 2007, the 22nd AAAI Conference on Artificial Intelligence. Vancouver, Canada.
+
+
+Reyes, Rosso & Veale (2012) present a rule-based approach to
+differentiate ironic text from non-ironic one. They create a data set
+of 40k tweets by quering for specific hashtags, 10k ironic (#irony)
+and 30k non-ironic tweets (#education,#humor,#politics).  Their model
+is based on 4 sets of features: 
+i) signatures (orthographic features incl. emoticons, quotes; certain
+adverbs like "about","nevertheless"; temporal adverbs
+"suddenly","abruptly" (could not find complete list as they say in
+paper);
+ii) "unexpectedness": mix of present and past tense; word-net
+inter-sentence relatedness;
+iii) style (c-ngrams,skipgrams,polarity-skipgrams); 
+iv) "emotional scenario":
+scores from dictionary (Whissell's dictionary of affect in
+language?!). "multi-dimensional"=4 feature templates; 
+Exp setup: removed duplicates, applied stemming, removed stopwords and hashtags.
+"the boundaries that differentiate verbal irony from situational
+irony, or even sarcasm, are very fuzzy"-> rely on #irony hashtag.
+Rule-based model based on thresholds for the 4 groups. Later they also
+build a naive bayes and decision tree model based on those 4 feature
+templates (binarized) and evaluated it on balanced and disbalanced
+corpus. Final part is a study on "Toyota" tweets, without hashtags,
+manually annotated for irony (147 tweets out of 500). 
+
+Reyes & Rosso (2013): again focus on verbal irony ('a kind of indirect
+negation'); is basically the rule-based model as above but only using
+i) iv) and ii) [no iii)]; then, they use this model to find the most
+ironic sentences in 4 data sets (e.g. movie reviews)... annotate 400
+most ironic sentences, very low agreement scores,... conclude that
+judging sentence in isolation is hard.
+
+Meeting Nov 20, 2014
+=====================
+OK - check feature combination, make sure sequence is kept
+OK - run with only Brown cluster
+OK - BP recreate Brown by replacing usernames with @USER and URLS
+
+OK - evaluate systems/presentation: data, results: constant baselines, unigrams, unigrams+bigrams; mention capping; evaluation metrics; 
+
+OK - email about evaluation metric & test data
+
+OK - BP: run general sentiment system on train data
+
+- possible features to add:
+  * 3 new features with prediction scores from general model
+  * sentiment lexicons; local/position-based polarity 
+  * amount of tokens, amount of content tokens
+  * as X as Y construction: counts in ironic text vs non-ironic
+
+  - gender?
+  - adjectives: Dirk's typology: not all adjectives the same odds of being using methaporically (e.g. temperature based vs. dimension)
+  - semantic types  -> supersense from NLTK wordnet (n.animal, n.artifact); get most frequent; HM sends snippet
+
+- remarks/keep in mind: most predictive features on retweets, duplicates (w/o urls etc)
+
+- negative prior, artifact of task rather than sampling
+
+- simile: stronger with about ; "about as X as Y"
+  BP run pos tagger/stopwords on asXas to extract X=adj and Y=noun
+  HM suggestion from paper: often similies are hapax if ironic
+
+- BP upload asXas
+
+- to see:
+  * Whissell's dict available?
+
+- remember for test data:
+  * check if there are urls
+  * check if there are hashtags
+  * run greps on test data to see what's covered
+  * check usernames for test and trial (get info from user?)
+  * train on combined train and trial
+  * missing tweets!!!
+
+- ranking and rescaling to test distribution
+- conflate sentiment; invert general SA score?
+
+
+Meeting Nov 25, 2014
+====================
+- Sarah inspect lexicon (emnlp05), prepare ensemble (weighted average), latest
+- Hector correlation between system outputs
+- Barbara subcorpus baseline based on groups/clusters: see src/label.py and "trial.label" runs with logs in runs/logs
+- HM, BP: diff in distribution, check magnitude issue, how good we do on positives
+
+Meeting Dec 2, 2014
+===================
+- Sarah: see classification, quantiles; smagnitude, ensemble
+- HM confusion matrix script, precision, rec, f1 for classes
+- BP semi-supervised learning
+- BP download data on Dec 5
+
+- systems to use in ensemble (voting; weighted voting; stacking): 
+  smagnitude, sarah's best, subcorpus baseline, sarah's second best, sentiment vanilaa, semi-supervised system, sarah' classifier
+
+
+BP Ridge:
+- tune alpha
+- tune class-balance for p/negatives (~60 F1 on positives)
+
+Meeting Dec 9, 2014
+===================
+- Sarah: * ensemble script: weighted voting
+         * ensemble learner: prepare script that takes predictions from systems as input 
+	 * download data on Monday Dec 15
+- BP: semi-supervised learner, tune Ridge
+- HM: correlation, analysis with lexicon
+- all: don't forget todo points once we got test data 
+

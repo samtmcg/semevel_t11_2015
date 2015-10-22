@@ -1,0 +1,2 @@
+# in one of their papers, they consider #politics #humor and #education as non-figurative
+cat politics.txt humor.txt education.txt | egrep -oiw "as [[:alnum:]]+ as [[:alpha:]]+( [[:alnum:]]+)?" | grep -iw -vFf stopwords | sort |uniq -c | sort -nr > counts-asXasY-non-figurative.txt
